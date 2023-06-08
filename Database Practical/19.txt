@@ -1,0 +1,15 @@
+3.Find the sum of the salaries of all employees of the ‘Accounts’ department, as well as the maximum salary, the minimum salary, and the average salary in this department
+
+SELECT SUM(SALARY) AS SUM_SALARY,
+AVG(SALARY) AS AVG_SALARY, MIN(SALARY) AS MIN_SALARY, MAX(SALARY) AS MAX_SALARY
+FROM EMPLOYEE E, DEPARTMENT D
+WHERE E.DNO=D.DNO AND D.DNAME='ACCOUNTS';
+
+
+4. Retrieve the name of each employee who works on all the projects controlled by department number 2 (use NOT EXISTS operator).
+SELECT E.FNAME,E.LNAME FROM EMPLOYEE E
+WHERE NOT EXISTS ((SELECT PNO FROM PROJECT WHERE DNO='2')
+MINUS
+(SELECT PNO FROM WORKS_ON WHERE E.SSN=SSN)
+);
+
